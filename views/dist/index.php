@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'id',
             'dist_name',
-            'state_id',
+            'state_name',
             'status',
             [
                 'class' => ActionColumn::className(),

@@ -60,4 +60,10 @@ class city extends \yii\db\ActiveRecord
             'status' => 'Status',
         ];
     }
+
+    // public function getState(){
+    //     return $this->hasOne(State::class,['id'=>'state_name']);
+    // }
+
+    
 }
