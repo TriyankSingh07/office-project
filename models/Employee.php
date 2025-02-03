@@ -46,7 +46,7 @@ class Employee extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'emp_address' => 'Emp Address',
-            'dept_id' => 'Dept ID',
+            'dept_id' => 'Dept Name',
             'gender' => 'Gender',
             'state_name' => 'State',
             'city_name '=>'city',

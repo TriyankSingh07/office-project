@@ -9,8 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property string|null $city_name
- * @property int|null $state_name
- * @property int|null $dist_name
+ * @property int|null $state_id
+ * @property int|null $dist_id
  * @property string|null $status
  */
 class city extends \yii\db\ActiveRecord
@@ -40,10 +40,8 @@ class city extends \yii\db\ActiveRecord
            
                 [['id'], 'integer'],
                 [['city_name'], 'string', 'max' => 20],
-                [['state_name', 'dist_name'], 'safe'], // Fix: Combined rule for virtual attributes
+                [['state_id', 'dist_id'], 'integer'], // Fix: Combined rule for virtual attributes
                 [['status'], 'string', 'max' => 5],
-
-
         ];
     }
 
@@ -55,15 +53,20 @@ class city extends \yii\db\ActiveRecord
         return [
             'id' => 'Id',
             'city_name' => 'City Name',
-            'state_name' => 'State name',
-            'dist_name' => 'Dist Name',
+            'state_id' => 'State Name',
+            'dist_id' => 'Dist Name',
             'status' => 'Status',
         ];
     }
 
-    // public function getState(){
-    //     return $this->hasOne(State::class,['id'=>'state_name']);
-    // }
+    public function getState(){
+        return $this->hasOne(State::class,['id'=>'state_id']);
+    }
+
+    public function getDist(){
+        return $this->hasOne(Dist::class,['id'=>'dist_id']);
+    }
+
 
     
 }

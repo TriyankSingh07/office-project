@@ -37,7 +37,6 @@ class Dist extends \yii\db\ActiveRecord{
     {
         return [
             [['state_id'], 'integer'],
-            [['state_name'], 'string', 'max' => 20],
             [['dist_name'], 'string', 'max' => 20],
             [['status'], 'string', 'max' => 5],
         ];
@@ -51,13 +50,13 @@ class Dist extends \yii\db\ActiveRecord{
         return [
             'id' => 'ID',
             'dist_name' => 'Name',
-            'state_name' => 'State Name',
+          //  'state_name' => 'State Name',
             'status' => 'Status',
         ];
     }
 
-    public function getState()
-    {
-        return $this->hasOne(State::class,['id' => 'state_name']);
+    public function getState(){
+        return $this->hasOne(State::class,['id' => 'state_id']);
     }
+
 }

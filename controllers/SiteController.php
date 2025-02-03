@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Dist;
 
 class SiteController extends Controller
 {
@@ -124,5 +125,14 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+    public function actionGetdist($state_id)
+    {
+        $dists = Dist::find()->where(['state_id' => $state_id])->all();
+        echo "<option value=''>Select District</option>";
+        foreach ($dists as $dist) {
+            echo "<option value='" . $dist->id . "'>" . $dist->dist_name . "</option>";
+        }
     }
 }

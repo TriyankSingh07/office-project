@@ -17,16 +17,26 @@ use app\models\City;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'state_name')->dropDownList(
-        \yii\helpers\ArrayHelper::map(state::find()->all(), 'state_name', 'state_name')
+    <?= $form->field($model, 'state_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(State::find()->all(), 'id', 'state_name'),
+        [
+            'prompt' => 'Select State',
+            'class' => 'form-control', // Ensures consistency with other input fields
+            'onchange' => '
+            $.get("' . Yii::$app->urlManager->createUrl('site/getdist?state_id=') . '"+$(this).val(), function(data) {
+                $("select#dist_name").html(data);
+            })
+        '
+        ]
     ) ?>
 
+    <?= $form->field($model, 'dist_id', [
+        'inputOptions' => ['id' => 'dist_name', 'class' => 'form-control'] // Adding Bootstrap class
+    ])->dropDownList([
+        'prompt' => 'Select District'
+    ]); ?>
 
-    <?= $form->field($model, 'dist_name')->dropDownList(
-        \yii\helpers\ArrayHelper::map(dist::find()->all(), 'dist_name', 'dist_name')
-    ) ?>
 
-    
 
 
     <?= $form->field($model, 'city_name')->textInput(['maxlength' => true]) ?>

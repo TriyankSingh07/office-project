@@ -1,0 +1,17 @@
+  <?= $form->field($model, 'state_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(State::find()->all(), 'id', 'state_name'),
+        [
+            'prompt' => 'Select States',
+            'onchange' => '
+
+                $.get( "' . Yii::$app->urlManager->createUrl('site/getdist?state_id=') . '"+$(this).val(), function( data ) {
+                $( "select#dist_name" ).html( data );
+                })'
+
+        ]
+    ) ?>
+
+
+    <?= $form->field($model, 'dist_id', ['inputOptions' => ['id' => 'dist_name']])->dropDownList([
+        'prompt' => 'Select District'
+    ]); ?>

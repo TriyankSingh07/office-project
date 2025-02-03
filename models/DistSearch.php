@@ -18,7 +18,7 @@ class DistSearch extends Dist
     {
         return [
             [['id','state_id'], 'integer'],    //remove state_id 
-            [['dist_name', 'state_name','status'], 'safe'],  //name=dist_name
+            [['dist_name','status'], 'safe'],  //name=dist_name
         ];
     }
 
@@ -59,7 +59,7 @@ class DistSearch extends Dist
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'state_name' => $this->state_name,
+            'state_name' => $this->state_id,
         ]);
 
         $query->andFilterWhere(['like', 'dist_name', $this->dist_name])

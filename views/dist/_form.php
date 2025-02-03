@@ -14,15 +14,17 @@ use app\models\Dist;
 <div class="dist-form">
 
     <?php $form = ActiveForm::begin(); ?>
-    
-    <?= $form->field($model,'state_name')->dropDownList(
-        \yii\helpers\ArrayHelper::map(state::find()->all(),'state_name','state_name')
+
+    <?= $form->field($model, 'state_id')->dropDownList(
+        \yii\helpers\ArrayHelper::map(state::find()->all(), 'id', 'state_name'),
+        ['prompt'=>'Select State']
     ) ?>
+
 
     <?= $form->field($model, 'dist_name')->textInput(['maxlength' => true]) ?>
 
-      <?= $form->field($model, 'status')->dropDownList(
-        ['T'=>'T', 'F'=>'F']
+    <?= $form->field($model, 'status')->dropDownList(
+        ['T' => 'T', 'F' => 'F']
     ) ?>
 
     <div class="form-group">
